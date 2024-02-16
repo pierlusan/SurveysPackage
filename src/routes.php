@@ -20,7 +20,8 @@ Route::middleware(['web'])->group(function () {
 
     Route::get('surveys/showResponse/{survey}/{user}',[SurveysController::class,'showResponses'])->name('surveys.showResponses');
 
-    Route::delete('surveys/deleteQuestion/{question}',[SurveysController::class, 'deleteQuestion'])->name('surveys.deleteQuestion');
+    Route::get('deleteQuestion/{question}',[SurveysController::class,'deleteQuestion'])->name('surveys.deleteQuestion');
+    Route::get('deleteModule/{module}',[SurveysController::class,'deleteModule'])->name('surveys.deleteModule');
 });
 
 

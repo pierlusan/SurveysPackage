@@ -37,6 +37,10 @@
                                         <div class="col text-end">
                                             <button type="submit" class="btn btn-dark mt-1">Aggiungi domanda</button>
                                         </div>
+                                        <div class="text-end">
+                                            <a href="{{route('surveys.deleteModule',['module'=>$module->id])}}"
+                                               class="btn btn-danger" role="button">Elimina Modulo</a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="container">
@@ -71,8 +75,9 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div  class="text-end">
-                                                                <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}" method="delete" class="btn btn-danger" role="button">Elimina</a>
+                                                            <div class="text-end">
+                                                                <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}"
+                                                                   class="btn btn-danger" role="button">Elimina</a>
                                                             </div>
                                                         </div>
                                                     @elseif($question->type == 'single_choice')
@@ -93,8 +98,9 @@
                                                                     @endforeach
                                                                 </div>
                                                             </div>
-                                                            <div  class="text-end">
-                                                                <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}" method="delete" class="btn btn-danger" role="button">Elimina</a>
+                                                            <div class="text-end">
+                                                                <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}"
+                                                                   class="btn btn-danger" role="button">Elimina</a>
                                                             </div>
                                                         </div>
                                                     @elseif($question->type == 'open-ended')
@@ -117,8 +123,9 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div  class="text-end">
-                                                                <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}" method="delete" class="btn btn-danger" role="button">Elimina</a>
+                                                            <div class="text-end">
+                                                                <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}"
+                                                                   class="btn btn-danger" role="button">Elimina</a>
                                                             </div>
                                                         </div>
                                                     @elseif($question->type == 'multiple_choice')
@@ -140,8 +147,9 @@
                                                                     @endforeach
                                                                 </div>
                                                             </div>
-                                                            <div  class="text-end">
-                                                                <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}" method="delete" class="btn btn-danger" role="button">Elimina</a>
+                                                            <div class="text-end">
+                                                                <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}"
+                                                                   class="btn btn-danger" role="button">Elimina</a>
                                                             </div>
                                                         </div>
                                                     @endif

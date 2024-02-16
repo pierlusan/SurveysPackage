@@ -221,8 +221,13 @@ class SurveysController extends Controller
 
     public function deleteQuestion(Question $question)
     {
-
         $question->delete();
+        return redirect()->back();
+    }
+
+    public function deleteModule(Module $module)
+    {
+        $module->delete();
         return redirect()->back();
     }
 
@@ -252,6 +257,12 @@ class SurveysController extends Controller
         }
 
         return $surveys;
+    }
+
+    public static function deleteSurveys(Survey $survey)
+    {
+        $survey->delete;
+        return redirect()->back();
     }
 
 
