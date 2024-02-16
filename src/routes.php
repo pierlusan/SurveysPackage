@@ -19,6 +19,8 @@ Route::middleware(['web'])->group(function () {
     Route::post('surveys/saveResponse/{survey}/{module}',[SurveysController::class,'saveResponse'])->name('surveys.saveResponse');
 
     Route::get('surveys/showResponse/{survey}/{user}',[SurveysController::class,'showResponses'])->name('surveys.showResponses');
+
+    Route::delete('surveys/deleteQuestion/{question}',[SurveysController::class, 'deleteQuestion'])->name('surveys.deleteQuestion');
 });
 
 

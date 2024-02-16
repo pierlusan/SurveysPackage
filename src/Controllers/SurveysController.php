@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use lp\surveys\Models\Answer;
 use lp\surveys\Models\FlowLogic;
 use lp\surveys\Models\Module;
-use LP\surveys\Models\Question;
+use lp\surveys\Models\Question;
 use lp\surveys\Models\Survey;
 use lp\surveys\Models\Survey_responses;
 use lp\surveys\Models\SurveyUser;
@@ -219,6 +219,12 @@ class SurveysController extends Controller
 
     }
 
+    public function deleteQuestion(Question $question)
+    {
+
+        $question->delete();
+        return redirect()->back();
+    }
 
     public static function allSurveys()
     {
@@ -247,6 +253,8 @@ class SurveysController extends Controller
 
         return $surveys;
     }
+
+
 
 
 

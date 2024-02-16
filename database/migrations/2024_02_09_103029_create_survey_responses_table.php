@@ -17,14 +17,14 @@ return new class extends Migration
             $table->bigInteger('valore_domanda')->nullable();
 
             $table->bigInteger('question_id')->unsigned();
-            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
 
             $table->bigInteger('answer_id')->unsigned()->nullable();
-            $table->foreign('answer_id')->references('id')->on('answers');
+            $table->foreign('answer_id')->references('id')->on('answers')->onDelete('cascade');
 
 
             $table->bigInteger('survey_id')->unsigned();
-            $table->foreign('survey_id')->references('id')->on('surveys');
+            $table->foreign('survey_id')->references('id')->on('surveys')->onDelete('cascade');
 
             $table->string('text_answer')->nullable();
             $table->string('user')->nullable();
