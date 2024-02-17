@@ -2,59 +2,127 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .relative {
+            position: relative;
+        }
+
+        .remove-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px; /* o qualsiasi margine desiderato */
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .colored-bar {
+            background-color: #8f00ff;
+            height: 5px;
+            margin-left: -12px;
+            margin-right: -12px;
+            margin-top: -7.8px;
+            margin-bottom: 10px;
+        }
+
+        .colored-bar-question {
+            background-color: #4285f4;
+            height: 5px;
+            margin-left: 9px;
+            margin-right: 9px;
+            margin-top: -7.8px;
+            margin-bottom: 10px;
+        }
+
+        .mio-colore-personalizzato {
+            background-color: #e6e6fa;
+        }
+
+
+    </style>
 </head>
 <body>
 <div class="row justify-content-center mt-5">
     <div class="col-md-4">
-        <div class="card">
+        <div class="card mio-colore-personalizzato">
             <div class="container">
+                <div class="card-header mt-4 rounded-3 bg-white">
+                    <div class="colored-bar rounded-5"></div>
+                    <span>Domanda</span>
+                    <div class="float-end" id="punti">
+                        <label class="ml-auto">Points: 5</label>
+                    </div>
+                </div>
+                <!--
+                <div class="row">
+                    <div class="col">
+                        <button name="type" id="type" class="btn btn-dark mt-3 ms-3" value="single_choice" onclick="toggleAnswerFields('single_choice')" > <input type="hidden" name="type" value="single_choice"><i class="bi bi-list-ul"></i></button>
+                    </div>
+                    <div class="col">
+                        <button name="type" id="type" class="btn btn-dark mt-3 ms-3" value="open-ended" onclick="toggleAnswerFields('open-ended')"><i class="bi bi-alphabet"></i></button>
+                    </div>
+                    <div class="col">
+                        <button name="type" id="type"  class="btn btn-dark mt-3 ms-3" value="linear_scale" onclick="toggleAnswerFields('linear_scale')"><i class="bi bi-three-dots"></i></button>
+                    </div>
+                    <div class="col">
+                        <button name="type" id="type" class="btn btn-dark mt-3 ms-3" value="multiple_choice" onclick="toggleAnswerFields('multiple_choice')"><i class="bi bi-ui-checks"></i></button>
+                    </div>
+                </div>
+                -->
+
                 <form action="{{route('surveys.storeQuestion',['survey'=>$survey->id,'module'=>$module->id])}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <span>Domanda</span>
-                        <div id="punti">
-                        <label class="ml-auto">Points: 5 </label>
-                        </div>
-
-                    </div>
                     <div class="mx-auto max-w-md text-center mb-4 mt-4">
-                        <select name="type" id="type" onchange="toggleAnswerFields()">
+
+                        <select name="type" class="form-select" id="type" onchange="toggleAnswerFields()">
                             <option value="single_choice">Scelta singola</option>
                             <option value="open-ended">Risposta Aperta</option>
                             <option value="linear_scale">Scala Lineare</option>
                             <option value="multiple_choice">Scelta multipla</option>
                         </select>
+
+
+
                         <div class="mx-auto max-w-md text-center mb-4 mt-4">
                             <label for="question" class="block text-stone-100">Domanda<span
                                     class="font-bold text-base text-red-600">*</span></label><br>
                             <input placeholder="Domanda" type="text" name="question"
-                                   class="block bg-stone-300 border-stone-600 focus:border-stone-700 focus:ring-stone-700 w-full shadow-md"
+                                   class="form-control mt-2"
                                    id="question" required>
                         </div>
 
 
-                        <div id="linear_scale" class="mx-auto max-w-md text-center">
-                            <label for="from">Da:</label>
-                            <select name="from" id="type1">
-                                <option>0</option>
-                            </select>
-                            <label for="to">A:</label>
-                            <select name="to" id="type2">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
 
-                            </select><br>
+                        <div id="linear_scale" class="mx-auto max-w-md text-center">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div class="form-group text-center">
+                                    <label for="from">Da:</label>
+                                    <select class="form-select form-select-sm" name="from" id="type1">
+                                        <option>0</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group text-center ms-2">
+                                    <label for="to">A:</label>
+                                    <select class="form-select form-select-sm" name="to" id="type2">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
                             <input placeholder="Etichetta" type="text" name="fromAnswer"
-                                   class="block bg-stone-300 border-stone-600 focus:border-stone-700 focus:ring-stone-700 w-full shadow-md mt-2"
+                                   class="form-control mt-2"
                                    id="etichetta1"><br>
                             <input placeholder="Etichetta" type="text" name="toAnswer"
-                                   class="block bg-stone-300 border-stone-600 focus:border-stone-700 focus:ring-stone-700 w-full shadow-md mt-2"
+                                   class="form-control"
                                    id="etichetta2" >
                         </div>
 
@@ -90,6 +158,7 @@
         var risposta_multipla = document.getElementById('risposta_multipla')
         var scala_lineare = document.getElementById('linear_scale')
         var punti = document.getElementById('punti')
+        console.log(questionType);
 
 
         if (questionType === 'multiple_choice' || questionType === 'single_choice') {
@@ -119,30 +188,45 @@
 
     var counter = 0;
     function addQuestion() {
+        var questionType = document.getElementById('type').value;
         var dynamicFields = document.getElementById('dynamicFields');
         var newQuestion = document.createElement('div');
         newQuestion.className = 'mb-4';
 
-        newQuestion.innerHTML =
-            '<div class="flex items-center relative">' +
-            '<span for="answer" onclick="removeQuestion(this)">X</span>' +
-            '<input id="answer" placeholder="Opzione" type="text" name="answers['+counter+'][answer]" class="ms-2">' +
-            '</div>'+
-            '<select name="answers['+counter+'][value]" class="ml-auto">'+
-            '<option value = 1 >1</option>'+
-            '<option value = 2 >2</option>'+
-            '<option value = 3 >3</option>'+
-            '<option value = 4 >4</option>'+
-            '<option value = 5 >5</option>'+
-            '</select>'+
-            '<div id="aggancia">'+
-            '<select name="answers['+counter+'][next_module_id]">'+
-            '<option value=>Modulo successivo</option>'+
-            '@foreach($survey->modules as $modules)'+
-            '<option value={{$modules->id}}>{{$modules->title}}</option>'+
-            '@endforeach'+
-            '</select>'+
-            '</div>';
+        if(questionType === 'single_choice'){
+            newQuestion.innerHTML =
+                '<div class="relative d-flex">' +
+                '<input id="answer" placeholder="Opzione" type="text" name="answers['+counter+'][answer]" class="form-control">' +
+                '<span class="remove-icon" onclick="removeQuestion(this)">X</span>' +
+                '</div>' +
+                '<div class="d-flex">' +
+                '<select name="answers['+counter+'][value]" class="form-select ml-2">' +
+                '<option value="1">1</option>' +
+                '<option value="2">2</option>' +
+                '<option value="3">3</option>' +
+                '<option value="4">4</option>' +
+                '<option value="5">5</option>' +
+                '</select>' +
+                '<select name="answers['+counter+'][next_module_id]" class="form-select ml-2">' +
+                '<option value="">Modulo successivo</option>' +
+                '@foreach($survey->modules as $modules)' +
+                '<option value="{{ $modules->id }}">{{ $modules->title }}</option>' +
+                '@endforeach' +
+                '</select>' +
+                '</div>';
+
+
+        }else if(questionType === 'multiple_choice'){
+            newQuestion.innerHTML =
+                '<div class="relative">' +
+                '<input id="answer" placeholder="Opzione" type="text" name="answers['+counter+'][answer]" class="form-control">' +
+                '<span class="remove-icon" onclick="removeQuestion(this)">X</span>' +
+                '</div>';
+
+
+
+        }
+
 
 
 
@@ -183,7 +267,20 @@
     }
 
     window.onload = function () {
-        toggleAnswerFields();
+        toggleAnswerFields()
+        /*
+        var image = document.getElementById('image')
+        var risposta_multipla = document.getElementById('risposta_multipla')
+        var scala_lineare = document.getElementById('linear_scale')
+        var punti = document.getElementById('punti')
+
+        scala_lineare.style.display = "none"
+        image.style.display = "none"
+        risposta_multipla.style.display = 'none'
+        punti.style.display = "none"
+
+         */
+
 
     };
 </script>

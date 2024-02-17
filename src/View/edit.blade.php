@@ -4,22 +4,47 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .colored-bar-survey {
+            background-color: #8f00ff;
+            height: 5px;
+            margin-left: -12px;
+            margin-right: -12px;
+            margin-top: -7.8px;
+            margin-bottom: 10px;
+        }
+        .colored-bar-question {
+            background-color: #4285f4;
+            height: 5px;
+            margin-left: 9px;
+            margin-right: 9px;
+            margin-top: -7.8px;
+            margin-bottom: 10px;
+        }
+        .mio-colore-personalizzato {
+            background-color: #e6e6fa;
+        }
+    </style>
 </head>
 <body>
+
 <div class="row justify-content-center mt-5">
     <div class="col-md-8">
-        <div class="card">
+        <div class="card mio-colore-personalizzato">
             <div class="container">
                 <form action="{{route('surveys.createModule',['survey'=>$survey->id])}}" method="get">
                     @csrf
-                    <div class="card-header">
+                    <div class="card-header mt-2 rounded-3 bg-white">
+                        <div class="colored-bar-survey rounded-5"></div>
                         <div class="row">
                             <div class="col">
-                                Titolo: {{$survey->title}}<br>
-                                Descrizione: {{$survey->description}}
+                                Titolo: <strong>{{$survey->title}}</strong><br>
+                                Descrizione: <strong>{{$survey->description}}</strong>
                             </div>
-                            <div class="col text-end">
-                                <button type="submit" class="btn btn-dark mt-1">Aggiungi modulo</button>
+                            <div class="col text-end mt-1">
+                                <!--aggiungi modulo-->
+                                <button type="submit" class="btn btn-dark mt-1 rounded-5"><i class="bi bi-clipboard2-plus"></i></button>
                             </div>
                         </div>
                     </div>
@@ -28,28 +53,30 @@
                     @if($survey->modules)
                         @foreach($survey->modules as $module)
                             <form action="./add_question/{{$survey->id}}/{{$module->id}}" method="get">
-                                <div class="card-header">
+                                <div class="card-header rounded-3 bg-white">
+                                    <div class="colored-bar-survey rounded-5"></div>
                                     <div class="row">
                                         <div class="col">
-                                            Titolo: {{$module->title}}<br>
-                                            Descrizione: {{$module->description}}
+                                            Titolo: <strong>{{$module->title}}</strong><br>
+                                            Descrizione: <strong>{{$module->description}}</strong>
                                         </div>
-                                        <div class="col text-end">
-                                            <button type="submit" class="btn btn-dark mt-1">Aggiungi domanda</button>
-                                        </div>
-                                        <div class="text-end">
+                                        <div class="col text-end mt-2">
+                                            <!--aggiungi domanda-->
+                                            <button type="submit" class="btn btn-dark rounded-5"><i class="bi bi-plus-square"></i></button>
+                                            <!--cancella modulo-->
                                             <a href="{{route('surveys.deleteModule',['module'=>$module->id])}}"
-                                               class="btn btn-danger" role="button">Elimina Modulo</a>
+                                               class="btn btn-danger rounded-5" role="button"><i class="bi bi-trash3-fill"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="container">
                                     @if($module->questions)
                                         @foreach($module->questions as $question)
-                                            <div class="card-header">
+                                            <div class="card-header mt-2 rounded-5 bg-white">
                                                 <div class="row">
                                                     @if($question->type == 'linear_scale')
                                                         <div class="container">
+                                                            <div class="rounded-5 colored-bar-question"></div>
                                                             <div class="card-body">
                                                                 <div class="mx-0 mx-sm-auto">
                                                                     <div class="text-center">
@@ -75,13 +102,14 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="text-end">
+                                                            <div class="text-end  mb-2 mr-3">
                                                                 <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}"
-                                                                   class="btn btn-danger" role="button">Elimina</a>
+                                                                   class="btn btn-danger rounded-5" role="button"><i class="bi bi-trash3-fill"></i></a>
                                                             </div>
                                                         </div>
                                                     @elseif($question->type == 'single_choice')
                                                         <div class="container">
+                                                            <div class="rounded-5 colored-bar-question"></div>
                                                             <div class="card-body">
                                                                 <div class="row col-5">
                                                                     <p class="fw-bold">{{$question->question}}</p>
@@ -98,13 +126,14 @@
                                                                     @endforeach
                                                                 </div>
                                                             </div>
-                                                            <div class="text-end">
+                                                            <div class="text-end mb-2 mr-3">
                                                                 <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}"
-                                                                   class="btn btn-danger" role="button">Elimina</a>
+                                                                   class="btn btn-danger rounded-5" role="button"><i class="bi bi-trash3-fill"></i></a>
                                                             </div>
                                                         </div>
                                                     @elseif($question->type == 'open-ended')
                                                         <div class="container">
+                                                            <div class="rounded-5 colored-bar-question"></div>
                                                             <div class="card-body">
                                                                 <div class="row">
                                                                     <div class="container text-center mt-3">
@@ -123,13 +152,14 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="text-end">
+                                                            <div class="text-end mb-2 mr-3">
                                                                 <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}"
-                                                                   class="btn btn-danger" role="button">Elimina</a>
+                                                                   class="btn btn-danger rounded-5" role="button"><i class="bi bi-trash3-fill"></i></a>
                                                             </div>
                                                         </div>
                                                     @elseif($question->type == 'multiple_choice')
                                                         <div class="container">
+                                                            <div class="rounded-5 colored-bar-question"></div>
                                                             <div class="card-body">
                                                                 <div class="row col-5">
                                                                     <p class="fw-bold">{{$question->question}}</p>
@@ -147,9 +177,9 @@
                                                                     @endforeach
                                                                 </div>
                                                             </div>
-                                                            <div class="text-end">
+                                                            <div class="text-end mb-2 mr-3">
                                                                 <a href="{{route('surveys.deleteQuestion',['question'=>$question->id])}}"
-                                                                   class="btn btn-danger" role="button">Elimina</a>
+                                                                   class="btn btn-danger rounded-5" role="button"><i class="bi bi-trash3-fill"></i></a>
                                                             </div>
                                                         </div>
                                                     @endif
@@ -163,7 +193,7 @@
                     @endif
                 </div>
                 <div class="col text-end">
-                    <a class="btn btn-secondary mb-3" href="/" role="button">Salva</a>
+                    <a class="btn btn-secondary mb-3 rounded-5" href="/" role="button">Salva</a>
                 </div>
             </div>
         </div>
