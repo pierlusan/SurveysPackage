@@ -7,24 +7,28 @@
     <style>
         .colored-bar-survey {
             background-color: #8f00ff;
-            height: 5px;
-            margin-left: -12px;
-            margin-right: -12px;
+            height: 15px;
+            margin-left: -16px;
+            margin-right: -16px;
             margin-top: -7.8px;
             margin-bottom: 10px;
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0% 50%);
         }
-
         .colored-bar-question {
             background-color: #4285f4;
-            height: 5px;
-            margin-left: 9px;
-            margin-right: 9px;
-            margin-top: -7.8px;
+            height: 60px;
+            margin-left: -16px;
+            margin-right: -16px;
+            margin-top: -8px;
             margin-bottom: 10px;
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0% 50%);
         }
 
         .mio-colore-personalizzato {
             background-color: #e6e6fa;
+        }
+        .colore-bottone {
+            background-color: #a84bff;
         }
     </style>
 </head>
@@ -199,7 +203,7 @@
                                 </div>
                             </div>
                             <div class="mt-3 text-end">
-                                <button type="submit" class="btn btn-dark mb-3 rounded-5">Avanti</button>
+                                <button type="submit" class="btn colore-bottone mb-3 rounded-5">Avanti</button>
                             </div>
                         </div>
                     @endif

@@ -7,20 +7,21 @@
     <style>
         .colored-bar-survey {
             background-color: #8f00ff;
-            height: 5px;
-            margin-left: -12px;
-            margin-right: -12px;
+            height: 15px;
+            margin-left: -16px;
+            margin-right: -16px;
             margin-top: -7.8px;
             margin-bottom: 10px;
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0% 50%);
         }
-
         .colored-bar-question {
             background-color: #4285f4;
-            height: 5px;
-            margin-left: 9px;
-            margin-right: 9px;
-            margin-top: -7.8px;
+            height: 60px;
+            margin-left: -16px;
+            margin-right: -16px;
+            margin-top: -8px;
             margin-bottom: 10px;
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0% 50%);
         }
 
         .mio-colore-personalizzato {
@@ -39,7 +40,7 @@
                 <form action="/" method="get">
                     @csrf
                     <div class="card-header bg-white rounded-3 mt-3">
-                        <div class="colored-bar-survey"></div>
+                        <div class="colored-bar-survey rounded-3"></div>
                         <div class="row">
                             <div class="col">
                                 Titolo: <strong>{{$responses[0]->survey->title}}</strong><br>
@@ -55,7 +56,7 @@
                                     @if($response->question->type == 'linear_scale')
                                         <div class="container">
                                             <div class="rounded-5 colored-bar-question"></div>
-                                            <div class="card-body">
+                                            <div class="card-body mb-4">
                                                 <div class="mx-0 mx-sm-auto">
                                                     <div class="text-center">
                                                         <p>
@@ -91,7 +92,7 @@
                                     @elseif($response->question->type == 'single_choice')
                                         <div class="container">
                                             <div class="rounded-5 colored-bar-question"></div>
-                                            <div class="card-body">
+                                            <div class="card-body mb-4">
                                                 <div class="row col-5">
                                                     <p class="fw-bold">{{$response->question->question}}</p>
                                                     @foreach($response->question->answers as $answer)
@@ -114,7 +115,7 @@
                                     @elseif($response->question->type == 'open-ended')
                                         <div class="container">
                                             <div class="rounded-5 colored-bar-question"></div>
-                                            <div class="card-body">
+                                            <div class="card-body mb-4">
                                                 <div class="row">
                                                     <div class="container text-center mt-3">
                                                         <div class="col">
@@ -140,7 +141,7 @@
                                     @elseif($response->question->type == 'multiple_choice')
                                         <div class="container">
                                             <div class="rounded-5 colored-bar-question"></div>
-                                            <div class="card-body">
+                                            <div class="card-body mb-4">
                                                 <div class="row col-5">
                                                     <p class="fw-bold">{{$response->question->question}}</p>
                                                     @foreach($response->question->answers as $answer)

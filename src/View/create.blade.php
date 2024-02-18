@@ -6,11 +6,12 @@
     <style>
         .colored-bar-survey {
             background-color: #8f00ff;
-            height: 5px;
-            margin-left: -12px;
-            margin-right: -12px;
+            height: 10px;
+            margin-left: -15px;
+            margin-right: -15px;
             margin-top: -7.8px;
             margin-bottom: 10px;
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0% 50%);
         }
         .colored-bar-question {
             background-color: #4285f4;
@@ -19,6 +20,7 @@
             margin-right: 9px;
             margin-top: -7.8px;
             margin-bottom: 10px;
+
         }
         .mio-colore-personalizzato {
             background-color: #e6e6fa;
@@ -37,7 +39,9 @@
                     @csrf
                     <div class="card-header rounded-3 bg-white mt-4">
                         <div class="colored-bar-survey rounded-5"></div>
+                        <div class="mb-2">
                         Crea questionario
+                        </div>
                     </div>
                     <div class="mb-4 mt-4">
                         <label for="title" class="block text-stone-100">Titolo<span class="font-bold text-base text-red-600">*</span></label>

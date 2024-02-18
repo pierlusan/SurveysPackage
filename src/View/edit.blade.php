@@ -8,22 +8,27 @@
     <style>
         .colored-bar-survey {
             background-color: #8f00ff;
-            height: 5px;
-            margin-left: -12px;
-            margin-right: -12px;
+            height: 15px;
+            margin-left: -16px;
+            margin-right: -16px;
             margin-top: -7.8px;
             margin-bottom: 10px;
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0% 50%);
         }
         .colored-bar-question {
             background-color: #4285f4;
-            height: 5px;
-            margin-left: 9px;
-            margin-right: 9px;
-            margin-top: -7.8px;
+            height: 60px;
+            margin-left: -16px;
+            margin-right: -16px;
+            margin-top: -8px;
             margin-bottom: 10px;
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0% 50%);
         }
         .mio-colore-personalizzato {
             background-color: #e6e6fa;
+        }
+        .colore-bottone {
+            background-color: #00ff00;
         }
     </style>
 </head>
@@ -32,7 +37,7 @@
 <div class="row justify-content-center mt-5">
     <div class="col-md-8">
         <div class="card mio-colore-personalizzato">
-            <div class="container">
+            <div class="container mt-3">
                 <form action="{{route('surveys.createModule',['survey'=>$survey->id])}}" method="get">
                     @csrf
                     <div class="card-header mt-2 rounded-3 bg-white">
@@ -44,7 +49,7 @@
                             </div>
                             <div class="col text-end mt-1">
                                 <!--aggiungi modulo-->
-                                <button type="submit" class="btn btn-dark mt-1 rounded-5"><i class="bi bi-clipboard2-plus"></i></button>
+                                <button type="submit" class="btn colore-bottone mt-1 rounded-5"><i class="bi bi-clipboard2-plus-fill"></i></button>
                             </div>
                         </div>
                     </div>
@@ -53,7 +58,7 @@
                     @if($survey->modules)
                         @foreach($survey->modules as $module)
                             <form action="./add_question/{{$survey->id}}/{{$module->id}}" method="get">
-                                <div class="card-header rounded-3 bg-white">
+                                <div class="card-header rounded-3 bg-white mb-3">
                                     <div class="colored-bar-survey rounded-5"></div>
                                     <div class="row">
                                         <div class="col">
@@ -62,7 +67,7 @@
                                         </div>
                                         <div class="col text-end mt-2">
                                             <!--aggiungi domanda-->
-                                            <button type="submit" class="btn btn-dark rounded-5"><i class="bi bi-plus-square"></i></button>
+                                            <button type="submit" class="btn colore-bottone rounded-5"><i class="bi bi-plus-square-fill"></i></button>
                                             <!--cancella modulo-->
                                             <a href="{{route('surveys.deleteModule',['module'=>$module->id])}}"
                                                class="btn btn-danger rounded-5" role="button"><i class="bi bi-trash3-fill"></i></a>
@@ -77,7 +82,7 @@
                                                     @if($question->type == 'linear_scale')
                                                         <div class="container">
                                                             <div class="rounded-5 colored-bar-question"></div>
-                                                            <div class="card-body">
+                                                            <div class="card-body ">
                                                                 <div class="mx-0 mx-sm-auto">
                                                                     <div class="text-center">
                                                                         <p>

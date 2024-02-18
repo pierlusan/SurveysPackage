@@ -19,11 +19,12 @@
 
         .colored-bar {
             background-color: #8f00ff;
-            height: 5px;
-            margin-left: -12px;
-            margin-right: -12px;
+            height: 15px;
+            margin-left: -16px;
+            margin-right: -16px;
             margin-top: -7.8px;
             margin-bottom: 10px;
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0% 50%);
         }
 
         .colored-bar-question {
@@ -37,6 +38,9 @@
 
         .mio-colore-personalizzato {
             background-color: #e6e6fa;
+        }
+        .colore-bottone {
+            background-color: #a84bff;
         }
 
 
@@ -133,12 +137,12 @@
 
                         <div id="risposta_multipla">
                             <div id="dynamicFields"></div>
-                            <button type="button" class="btn btn-dark" onclick="addQuestion()">+</button>
+                            <button type="button" class="btn colore-bottone" onclick="addQuestion()"><i class="bi bi-patch-plus-fill"></i></button>
                         </div>
 
 
                     </div>
-                    <button type="submit" class="btn btn-dark float-end mt-auto mb-2">Salva</button>
+                    <button type="submit" class="btn colore-bottone float-end mt-auto mb-2"><strong>Salva</strong></button>
                 </form>
             </div>
         </div>
