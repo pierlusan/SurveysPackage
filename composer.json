@@ -1,5 +1,5 @@
 {
-    "name": "lp/surveys",
+    "name": "surveyGenerator/surveys",
     "description": "serve per generare questionari",
     "license": "MIT",
     "require": {}
